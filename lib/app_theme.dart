@@ -13,12 +13,14 @@ class AppThemes {
       fontSize: 24, color: Color(0xff292929));
   static const TextStyle text5 = TextStyle(
       fontSize: 16, color: Color(0xff545454));
-  static const TextStyle text4 = TextStyle(
+  static const TextStyle text16b = TextStyle(
       fontSize: 16, color: Color(0xff292929),fontWeight: FontWeight.bold);
   static const TextStyle text2 = TextStyle(
       fontSize: 24, color: Color(0xffFFFFFF));
-  static const TextStyle text3 = TextStyle(
+  static const TextStyle text20 = TextStyle(
       fontSize: 20, color: Color(0xff292929));
+  static const TextStyle text14= TextStyle(
+      fontSize: 14, color: Color(0xff292929));
 
   static const double paddingSmall = 8.0;
   static const double padding10 = 10.0;
