@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  flutter_staggered_grid_view:
   flutter:
     sdk: flutter
 
@@ -38,6 +39,16 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  fonts:
+    - family: Roboto_Regular
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+    - family: Roboto_Bold
+      fonts:
+        - asset: assets/fonts/Roboto-Bold.ttf
+    - family: Roboto_Medium
+      fonts:
+        - asset: assets/fonts/Roboto-Medium.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -57,9 +68,16 @@ flutter:
     - assets/images/burger.png
     - assets/images/vai.png
     - assets/images/ham.png
-
-
-
+    - assets/images/avata.png
+    - assets/images/tao.png
+    - assets/images/nho.png
+    - assets/images/dau.png
+    - assets/images/vai.png
+    - assets/images/tll.png
+    - assets/images/dua.png
+    - assets/images/mtao.png
+    - assets/images/mham.png
+    - assets/images/mpiza.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
@@ -71,12 +89,8 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+
+
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

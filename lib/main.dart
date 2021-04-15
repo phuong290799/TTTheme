@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_theme/UI/HomePage.dart';
-import 'package:flutter_theme/UI/Splash.dart';
+import 'package:flutter_theme/UI/homepage.dart';
+import 'package:flutter_theme/UI/splash.dart';
 import 'package:flutter_theme/app_colors.dart';
 import 'package:flutter_theme/app_theme.dart';
 
@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
           )
       ),
       
-      home: MyHomePage(),
-      //home: Splash(),
+      //home: MyHomePage(),
+      home: Splash(),
     );
   }
 }
