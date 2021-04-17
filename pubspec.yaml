@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  kf_drawer:
   flutter_staggered_grid_view:
   flutter:
     sdk: flutter
@@ -78,6 +79,9 @@ flutter:
     - assets/images/mtao.png
     - assets/images/mham.png
     - assets/images/mpiza.png
+    - assets/images/2.0x/star.png
+    - assets/images/star.png
+    - assets/images/crown.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

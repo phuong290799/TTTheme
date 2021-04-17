@@ -196,13 +196,14 @@ class _CartState extends State<Cart> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                 '${ _listData[index].price}',
-                                  style: AppThemes.Text18Bold,
-                                ),
-                                Text(
                                   _listData[index].name,
                                   style: AppThemes.Text16,
                                 ),
+                                Text("\$"+
+                                 '${ _listData[index].price}',
+                                  style: AppThemes.Text18Bold,
+                                ),
+
                                 SizedBox(
                                   width: 20,
                                 ),

@@ -3,7 +3,8 @@ class PopularObj{
   late String price;
   late String weight;
   late String image;
+  late double star;
   late bool isSelect=true;
-  PopularObj(this.name,this.image,this.price,this.weight,this.isSelect);
+  PopularObj(this.name,this.image,this.price,this.weight,this.isSelect,this.star);
 
 }

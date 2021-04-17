@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_theme/UI/cart.dart';
-import 'package:flutter_theme/UI/fruits.dart';
 import 'package:flutter_theme/app_colors.dart';
 import 'package:flutter_theme/app_theme.dart';
+import 'package:flutter_theme/home/categoryHome.dart';
+import 'package:flutter_theme/home/popularHome.dart';
 import 'package:flutter_theme/models/categoryObj.dart';
-import 'package:flutter_theme/models/popular.dart';
+import 'package:flutter_theme/models/popularObj.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -13,19 +14,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<CategoryObj> _listData = [CategoryObj('Fruit','assets/images/imagevai.png', true),
-    CategoryObj('Pizza', 'assets/images/pizza.png', false),
-    CategoryObj('fruit', 'assets/images/burger.png', false),
-    CategoryObj('Burger', 'assets/images/burger.png', false)];
-  List<PopularObj> _listData2 =[PopularObj("Buffalo Burgers",'assets/images/ham.png',"2.50", "Weight 300g", true),
-    PopularObj("Sicilian Pizza",'assets/images/piza.png',"2.50", "Weight 300g",false),
-    PopularObj("Burger",'assets/images/vai.png',"2.50", "Weight 300g", false),
+  List<CategoryObj> _listData = [CategoryObj('Fruit','assets/images/imagevai.png', true,"fruits"),
+    CategoryObj('Pizza', 'assets/images/pizza.png', false,"piza"),
+    CategoryObj('Burger', 'assets/images/burger.png', false ,"burger"),
+    CategoryObj('Burger', 'assets/images/burger.png', false,"burger")];
+  List<PopularObj> _listData2 =[PopularObj("Buffalo Burgers",'assets/images/ham.png',"2.50", "Weight 300g", true,4.8),
+    PopularObj("Sicilian Pizza",'assets/images/piza.png',"2.50", "Weight 300g",false,5.0),
+    PopularObj("Burger",'assets/images/vai.png',"2.50", "Weight 300g", false,4.8),
   ];
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
+      resizeToAvoidBottomInset: false,
       drawer: Drawer(
         child: Container(
           color: AppColors.BACKGROUND,
@@ -62,7 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     )
                   ],
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Cart()));
+                },
               ),
               ListTile(
                 title: Row(
@@ -209,13 +213,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                 child: Container(
                   height: 52,
-                  width: 325,
                   decoration: BoxDecoration(
                     color:AppColors.Scaffor,
                     borderRadius: BorderRadius.circular(10),
@@ -227,27 +230,38 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: "Search Food",
-                      labelStyle: AppThemes.Text14,
-                      icon: Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: Icon(Icons.search),
-                      ),
-                      suffixIcon: Container(
-                        width: 52,
-                          decoration: BoxDecoration(
-                            color: AppColors.BACKGROUND,
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
+                  child: Row(
+                    children: [
+                      SizedBox(width: 20,),
+                      Icon(Icons.search),
+                      SizedBox(width: 10,),
+                      Container(
+                        height: 52,
+                        width: 250,
 
+                        child: Center(
+                          child: TextField(
+                            decoration: InputDecoration.collapsed(
+                              hintText: "Search Food",
+                              hintStyle: AppThemes.Text14,
                             ),
                           ),
+                        ),
+                      ),
+                  Expanded(child: SizedBox()),
+                  Container(
+                      width: 52,
+                        decoration: BoxDecoration(
+                          color: AppColors.BACKGROUND,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
 
-                          child: Image.asset('assets/images/adjust.png')),
-                    ),
+                          ),
+                        ),
+
+                        child: Image.asset('assets/images/adjust.png')),
+                    ],
                   ),
                 ),
               ),
@@ -288,51 +302,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   scrollDirection: Axis.horizontal,
                   itemCount: _listData.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      child: GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> Fruits()));
-                        },
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Center(
-                              child: Image.asset(_listData[index].image),
-                            ),
-                            Text(
-                              _listData[index].name,
-                              style: AppThemes.Text14Medium,
-                            ),
-                            Container(
-                              child: Icon(Icons.keyboard_arrow_right),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                color: Colors.white,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                          ],
-                        ),
-                      ),
-                      margin: const EdgeInsets.symmetric(horizontal: 10.0),
-                      width: 110,
-                      decoration: BoxDecoration(
-                        color: _listData[index].isSelected?AppColors.BACKGROUND:AppColors.Scaffor,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 20,
-                            offset: Offset(0, 0), // Shadow position
-                          ),
-                        ],
-                      ),
-                    );
+                    return
+                      CategoryHome(
+                        name: _listData[index].name,
+                        image: _listData[index].image,
+                       // isSelect: false,
+                        isSelect: _listData[index].isSelected,
+                        keyy: _listData[index].keyCategories,
+                      );
                   },
                 ),
               ),
@@ -356,74 +333,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 //scrollDirection: Axis.vertical,
                 itemCount: _listData2.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(left: 30, bottom: 20),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    _listData2[index].name,
-                                    style: AppThemes.Text20Medium
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        _listData2[index].weight,
-                                        style: AppThemes.Text14,
-                                      ),
-                                      SizedBox(
-                                        width: 20,
-                                      ),
-                                      Text(
-                                        _listData2[index].price,
-                                        style: AppThemes.Text16Bold,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: AppColors.BACKGROUND,
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(20),
-                                    bottomLeft: Radius.circular(20),
-                                  ),
-                                ),
-                                child: Icon(Icons.add),
-                                width: 90,
-                                height: 50,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Image.asset(_listData2[index].image,)
-                      ],
-                    ),
-                    margin: const EdgeInsets.symmetric(vertical: 10.0),
-                    width: 322,
-                    height: 171,
-                    decoration: BoxDecoration(
-                      color: AppColors.Scaffor,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey,
-                          blurRadius: 1,
-                          offset: Offset(0, 0), // Shadow position
-                        ),
-                      ],
-                    ),
+                  return PopularHome(
+                    name: _listData2[index].name,
+                    image: _listData2[index].image,
+                    price: _listData2[index].price,
+                    star: _listData2[index].star,
+                    weight: _listData2[index].weight,
+                    isSelect : _listData2[index].isSelect,
                   );
                 },
               ),
@@ -434,5 +350,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  drawer(BuildContext context) {}
+
 }
